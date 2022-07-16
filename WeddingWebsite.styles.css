@@ -1,3 +1,14 @@
+/* /Components/StepItem.razor.rz.scp.css */
+.step-circle[b-y15d9iec7s] {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    border:2px solid black;
+    display: inline-block;
+}
+/* /Components/Steps.razor.rz.scp.css */
+body[b-ufzhwbi5to] {
+}
 /* /Shared/MainLayout.razor.rz.scp.css */
 .page[b-78fuju08yg] {
     position: relative;
