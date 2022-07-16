@@ -1,0 +1,7 @@
+﻿.step-circle {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    border:2px solid black;
+    display: inline-block;
+}

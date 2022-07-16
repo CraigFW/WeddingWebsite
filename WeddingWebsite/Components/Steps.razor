@@ -1,0 +1,112 @@
+﻿<div>
+    @if (ActiveIndex == 1)
+    {
+        <div>
+            <div class="row">
+                <label>09/02/2023</label>
+            </div>
+            <div class="row">
+                <label>Leaving the UK</label>
+            </div>
+        </div>
+    }
+    else if (ActiveIndex == 2)
+    {
+        <div>
+            <div class="row">
+                <label>11/02/2023</label>
+            </div>
+            <div class="row">
+                <label>Arriving In New Zealand</label>
+            </div>
+        </div>
+    }
+    else if (ActiveIndex == 3)
+    {
+        <div>
+            <div class="row">
+                <label>11/02/2023</label>
+            </div>
+            <div class="row">
+                <label>Auckland</label>
+            </div>
+        </div>
+    }
+    else if (ActiveIndex == 4)
+    {
+        <div>
+            <div class="row">
+                <label>11/02/2023</label>
+            </div>
+            <div class="row">
+                <label>Hobbiton Proposal</label>
+            </div>
+        </div>
+    }
+    else if (ActiveIndex == 5)
+    {
+        <div>
+            <div class="row">
+                <label>11/02/2023</label>
+            </div>
+            <div class="row">
+                <label>Swimming with Dolphins</label>
+            </div>
+        </div>
+    }
+    else if (ActiveIndex == 6)
+    {
+        <div>
+            <div class="row">
+                <label>11/02/2023</label>
+            </div>
+            <div class="row">
+                <label>Experiencing Maori Culture</label>
+            </div>
+        </div>
+    }
+    else if (ActiveIndex == 7)
+    {
+        <div>
+            <div class="row">
+                <label>11/02/2023</label>
+            </div>
+            <div class="row">
+                <label>Wellington</label>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="progress-container mb-3 mt-3">
+    <div class="progress" id="progress" style="@barLength"></div>
+    <StepItem stepClicked="()=>StepClicked(1)" extraClasses="@(ActiveIndex >= 1 ? "active" : "")" imgSrc="images/planetakeoff.png" />
+    <StepItem stepClicked="()=>StepClicked(2)" extraClasses="@(ActiveIndex >= 2 ? "active" : "")" imgSrc="images/planelanding.png" />
+    <StepItem stepClicked="()=>StepClicked(3)" extraClasses="@(ActiveIndex >= 3 ? "active" : "")" imgSrc="images/Auckland.png" />
+    <StepItem stepClicked="()=>StepClicked(4)" extraClasses="@(ActiveIndex >= 4 ? "active" : "")" imgSrc="images/HobbitonIcon.png" />
+    <StepItem stepClicked="()=>StepClicked(5)" extraClasses="@(ActiveIndex >= 5 ? "active" : "")" imgSrc="images/DolphinIcon.png" />
+    <StepItem stepClicked="()=>StepClicked(6)" extraClasses="@(ActiveIndex >= 6 ? "active" : "")" imgSrc="images/Maori.png" />
+    <StepItem stepClicked="()=>StepClicked(7)" extraClasses="@(ActiveIndex >= 7 ? "active" : "")" imgSrc="images/Wellington.png" />
+</div>
+
+@code
+{
+    const int MaxIndex = 7;
+    private int ActiveIndex { get; set; } = 1;
+    private bool prevDisabled = true;
+    private bool nextDisabled = false;
+    private string barLength = "width:0%";
+
+    private void StepClicked(int index)
+    {
+        ActiveIndex = index;
+        UpdateBar();
+    }
+
+    private void UpdateBar()
+    {
+        //draw the active line
+        double calc = ((double)(ActiveIndex - 1) / (double)(MaxIndex - 1)) * 100;
+        barLength = $"width:{calc}%";
+    }
+}

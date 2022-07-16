@@ -1,0 +1,19 @@
+﻿@*<button @onclick="DoneButtonClicked" class="circle @extraClasses"><img src="@imgSrc" width="25" height="25"/></button>*@
+<img @onclick="DoneButtonClicked" src="@imgSrc" width="75" height="75"/>
+
+
+@code {
+    [Parameter]
+    public EventCallback stepClicked { get; set; }
+
+    [Parameter]
+    public string extraClasses { get; set; } = "";
+
+    [Parameter]
+    public string imgSrc { get; set; } = "";
+
+    protected async Task DoneButtonClicked()
+    {
+        await stepClicked.InvokeAsync();
+    }
+}

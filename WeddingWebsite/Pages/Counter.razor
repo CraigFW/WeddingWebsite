@@ -1,18 +1,37 @@
 ﻿@page "/counter"
 
-<PageTitle>Counter</PageTitle>
+<div class="container">
+    <div class="progress-container">
+        <div class="progress" id="progress" style="@barLength"></div>
+        <button @onclick="()=>StepClicked(1)" class="circle @(ActiveIndex >= 1 ? "active" : "")"></button>
+        <button @onclick="()=>StepClicked(2)" class="circle @(ActiveIndex >= 2 ? "active" : "")"></button>
+        <button @onclick="()=>StepClicked(3)" class="circle @(ActiveIndex >= 3 ? "active" : "")"></button>
+        <button @onclick="()=>StepClicked(4)" class="circle @(ActiveIndex >= 4 ? "active" : "")"></button>
+        <button @onclick="()=>StepClicked(5)" class="circle @(ActiveIndex >= 5 ? "active" : "")"></button>
+        <button @onclick="()=>StepClicked(6)" class="circle @(ActiveIndex >= 6 ? "active" : "")"></button>
+        <button @onclick="()=>StepClicked(7)" class="circle @(ActiveIndex >= 7 ? "active" : "")"></button>
+    </div>
 
-<h1>Counter</h1>
+</div>
 
-<p role="status">Current count: @currentCount</p>
+@code
+{
+    const int MaxIndex = 7;
+    private int ActiveIndex { get; set; } = 1;
+    private bool prevDisabled = true;
+    private bool nextDisabled = false;
+    private string barLength = "width:0%";
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
+    private void StepClicked(int index)
     {
-        currentCount++;
+        ActiveIndex = index;
+        UpdateBar();
+    }
+
+    private void UpdateBar()
+    {
+        //draw the active line
+        double calc = ((double)(ActiveIndex - 1) / (double)(MaxIndex - 1)) * 100;
+        barLength = $"width:{calc}%";
     }
 }
